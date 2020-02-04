@@ -1,5 +1,6 @@
 package com.samuel.politico_na_mao.Model;
 
+import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
@@ -9,16 +10,12 @@ import lombok.Setter;
  */
 
 @Getter @Setter @NoArgsConstructor // Adicionando Getters e Setters e um construtor Vazio
+@AllArgsConstructor //Construtor com todos atributos definido na classe
 public class Cidade {
 
     private int idCidade;
     private String nomeCidade;
     private Estado estadoCidade;
 
-    public Cidade(int idCidade,String nomeCidade,Estado estadoCidade){
-        this.idCidade = idCidade;
-        this.nomeCidade = nomeCidade;
-        this.estadoCidade = estadoCidade;
-    };
-
+   
 }
