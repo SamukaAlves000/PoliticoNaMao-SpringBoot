@@ -7,7 +7,7 @@ import lombok.NoArgsConstructor;
 import lombok.Setter;
 
 /**
- * Deputados
+ * Deputado
  */
 @Getter @Setter @NoArgsConstructor // Adicionando Getters e Setters e um construtor Vazio
 @AllArgsConstructor //Construtor com todos atributos definido na classe
