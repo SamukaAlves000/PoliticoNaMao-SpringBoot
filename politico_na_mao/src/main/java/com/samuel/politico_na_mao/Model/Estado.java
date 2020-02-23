@@ -1,18 +1,25 @@
 package com.samuel.politico_na_mao.Model;
 
-import lombok.AllArgsConstructor;
-import lombok.Getter;
-import lombok.NoArgsConstructor;
-import lombok.Setter;
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.Id;
+import javax.persistence.Transient;
+
+import lombok.Data;
 
 /**
  * Estado
  */
-@Getter @Setter @NoArgsConstructor // Adicionando Getters e Setters e um construtor Vazio
-@AllArgsConstructor //Construtor com todos atributos definido na classe
+@Data
+@Entity
 public class Estado {
-
-    private int idEstado;
-    private String nomeEstado;
-    private String siglaEstado;
+    @Id
+    @Column(name="idEstado")
+    private Long id;
+    @Column(name="siglaEstado",nullable = false,length = 2)
+    private String sigla ;
+    @Column(name="nomeEstado",nullable = false,length = 30)
+    private String nome;
+    @Transient
+    private Regiao regiao;
 }

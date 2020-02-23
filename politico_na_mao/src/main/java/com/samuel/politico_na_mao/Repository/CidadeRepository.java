@@ -1,12 +1,13 @@
 package com.samuel.politico_na_mao.Repository;
 
-import org.springframework.stereotype.Repository;
+import com.samuel.politico_na_mao.Model.Cidade;
+
+import org.springframework.data.repository.CrudRepository;
 
 /**
  * CidadeRepository
  */
-@Repository
-public class CidadeRepository {
+public interface CidadeRepository extends CrudRepository<Cidade,Long>{
 
     
 }

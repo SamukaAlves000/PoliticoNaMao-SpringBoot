@@ -5,20 +5,21 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-
 import lombok.Data;
 
 /**
- * Cidade
+ * Regiao
  */
 @Data
 @Entity
-public class Cidade {
+public class Regiao {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name="idCidade")
+    @Column(name="idRegiao")
     private Long id;
-    @Column(name="nomeCidade",nullable = false,length = 50)
+    @Column(name="siglaRegiao",nullable = false,length = 2)
+    private String sigla ;
+    @Column(name="nomeRegiao",nullable = false,length = 15)
     private String nome;
     
 }
