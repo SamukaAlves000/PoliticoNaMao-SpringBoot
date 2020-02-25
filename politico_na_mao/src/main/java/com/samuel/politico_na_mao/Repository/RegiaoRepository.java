@@ -1,6 +1,6 @@
-package com.samuel.politico_na_mao.Repository;
+package com.samuel.politico_na_mao.repository;
 
-import com.samuel.politico_na_mao.Model.Regiao;
+import com.samuel.politico_na_mao.model.Regiao;
 
 import org.springframework.data.repository.CrudRepository;
 
