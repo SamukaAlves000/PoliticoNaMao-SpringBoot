@@ -5,14 +5,14 @@ import lombok.Setter;
 import lombok.ToString;
 
 /**
- * MicrorregiaoDto
+ * MicrorregiaoRequestDto
  */
 @Getter
 @Setter
 @ToString
-public class MicrorregiaoDto {
+public class MicrorregiaoRequestDto {
     private int id;
     private String nome;
-    private MesorregiaoDto mesorregiao;
+    private MesorregiaoRequestDto mesorregiao;
     
 }

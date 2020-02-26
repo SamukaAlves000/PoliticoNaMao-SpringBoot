@@ -7,16 +7,16 @@ import lombok.Setter;
 import lombok.ToString;
 
 /**
- * MunicipioDto
+ * CidadeRequestDto
  */
 @Getter
 @Setter
 @ToString
-public class MunicipioDto {
+public class CidadeRequestDto {
 
     private Long id;
     private String nome;
-    private MicrorregiaoDto microrregiao;
+    private MicrorregiaoRequestDto microrregiao;
 
 
     public Cidade convertToEntity(){
@@ -27,13 +27,6 @@ public class MunicipioDto {
         ciadadeEntity.setEstado(this.getMicrorregiao().getMesorregiao().getUF().convertToEntity());
 
         return ciadadeEntity;
-    }
-
-    public MunicipioDto convertToDto(Cidade entityCidade){
-        
-        this.setId(entityCidade.getId());
-        this.setNome(entityCidade.getNome());
-        return this;
-    }
+    } 
     
 }

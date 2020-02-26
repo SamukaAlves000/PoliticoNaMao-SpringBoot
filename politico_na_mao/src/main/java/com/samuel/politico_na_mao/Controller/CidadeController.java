@@ -3,7 +3,8 @@ package com.samuel.politico_na_mao.controller;
 import java.util.ArrayList;
 import java.util.List;
 
-import com.samuel.politico_na_mao.dto.MunicipioDto;
+import com.samuel.politico_na_mao.dto.CidadeRequestDto;
+import com.samuel.politico_na_mao.dto.CidadeResponseDto;
 import com.samuel.politico_na_mao.model.Cidade;
 import com.samuel.politico_na_mao.service.CidadeService;
 
@@ -31,25 +32,24 @@ public class CidadeController {
     public ResponseEntity<?> getAll(){ 
         
         Iterable<Cidade> list = cidadeService.findAllService();
-        List<MunicipioDto> municipioDtos = new ArrayList<>();
+        List<CidadeResponseDto> cidadeResponseDtos = new ArrayList<>();
         
         for (Cidade cidade :list) {
             
-           MunicipioDto municipioDto = new MunicipioDto();
-           municipioDtos.add(municipioDto.convertToDto(cidade));  
+           CidadeResponseDto cidadeResponseDto = new CidadeResponseDto();
+           cidadeResponseDtos.add(cidadeResponseDto.convertToDto(cidade));  
         }
         
-        return new ResponseEntity<>(municipioDtos,HttpStatus.OK);
+        return new ResponseEntity<>(cidadeResponseDtos,HttpStatus.OK);
     }
 
     @PutMapping()
     public ResponseEntity<?> update() {
         RestTemplate restTemplate = new RestTemplate();
         String path = "http://servicodados.ibge.gov.br/api/v1/localidades/estados/52/municipios";
-        MunicipioDto response[] = restTemplate.postForObject(path, null, MunicipioDto[].class);
-        for (MunicipioDto municipioDto : response) {
-
-            cidadeService.saveService(municipioDto.convertToEntity());
+        CidadeRequestDto response[] = restTemplate.postForObject(path, null, CidadeRequestDto[].class);
+        for (CidadeRequestDto CidadeRequestDto : response) {
+             cidadeService.saveService(CidadeRequestDto.convertToEntity());
             
         }
         

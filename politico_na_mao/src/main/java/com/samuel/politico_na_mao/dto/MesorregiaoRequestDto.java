@@ -7,15 +7,15 @@ import lombok.Setter;
 import lombok.ToString;
 
 /**
- * MesorregiaoDto
+ * MesorregiaoRequestDto
  */
 @Getter
 @Setter
 @ToString
-public class MesorregiaoDto {
+public class MesorregiaoRequestDto {
     
     private int id;
     private String nome;
     @JsonProperty("UF")
-    private UfDto uF;
+    private EstadoRequestDto uF;
 }

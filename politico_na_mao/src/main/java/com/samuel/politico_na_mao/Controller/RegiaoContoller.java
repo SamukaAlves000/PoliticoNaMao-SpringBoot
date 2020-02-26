@@ -3,7 +3,7 @@ package com.samuel.politico_na_mao.controller;
 import java.util.ArrayList;
 import java.util.List;
 
-import com.samuel.politico_na_mao.dto.RegiaoDto;
+import com.samuel.politico_na_mao.dto.RegiaoRequestDto;
 import com.samuel.politico_na_mao.model.Regiao;
 import com.samuel.politico_na_mao.service.RegiaoService;
 
@@ -34,15 +34,15 @@ public class RegiaoContoller {
     public ResponseEntity<?> getAll(){
       
         Iterable<Regiao> list = regiaoService.findAllService();
-        List<RegiaoDto> regiaoDtos = new ArrayList<>();
+        List<RegiaoRequestDto> RegiaoRequestDtos = new ArrayList<>();
         
         for (Regiao regiao :list) {
 
-           RegiaoDto regiaoDto = new RegiaoDto();
-           regiaoDtos.add(regiaoDto.convertToDto(regiao)); 
+           RegiaoRequestDto RegiaoRequestDto = new RegiaoRequestDto();
+           RegiaoRequestDtos.add(RegiaoRequestDto.convertToDto(regiao)); 
 
         }
-        return new ResponseEntity<>(regiaoDtos,HttpStatus.OK);
+        return new ResponseEntity<>(RegiaoRequestDtos,HttpStatus.OK);
     }
     
     @PutMapping
@@ -50,10 +50,10 @@ public class RegiaoContoller {
 
         final String uri = "https://servicodados.ibge.gov.br/api/v1/localidades/regioes";
         RestTemplate restTemplate = new RestTemplate();
-        RegiaoDto[] response = restTemplate.postForObject(uri, null, RegiaoDto[].class);
+        RegiaoRequestDto[] response = restTemplate.postForObject(uri, null, RegiaoRequestDto[].class);
 
-        for (RegiaoDto regiaoDto : response) {
-            regiaoService.saveService(regiaoDto.convertToEntity());
+        for (RegiaoRequestDto RegiaoRequestDto : response) {
+            regiaoService.saveService(RegiaoRequestDto.convertToEntity());
         }
         return new ResponseEntity<>(HttpStatus.OK);
     }

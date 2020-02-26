@@ -6,16 +6,16 @@ import com.samuel.politico_na_mao.model.Estado;
 import lombok.Data;
 
 /**
- * UfDto
+ * EstadoRequestDto
  */
 @Data
-public class UfDto {
+public class EstadoRequestDto {
 
     private int id;
     private String sigla;
     private String nome;
     @JsonProperty("regiao")
-    private RegiaoDto regiaoDto;
+    private RegiaoRequestDto RegiaoRequestDto;
 
     public Estado convertToEntity(){
 
@@ -24,22 +24,9 @@ public class UfDto {
         entityEstado.setSigla(this.getSigla());
         entityEstado.setNome(this.getNome());
 
-        entityEstado.setRegiao(regiaoDto.convertToEntity());
+        entityEstado.setRegiao(RegiaoRequestDto.convertToEntity());
 
         return entityEstado;
-    }
-
-    public UfDto convertToDto(Estado entityEstado){
-        
-        this.setId(entityEstado.getId());
-        this.setSigla(entityEstado.getSigla());
-        this.setNome(entityEstado.getNome());
-
-        RegiaoDto regiaoDto = new RegiaoDto();
-
-        this.setRegiaoDto(regiaoDto.convertToDto(entityEstado.getRegiao()));
-
-        return this;
     }
     
 }

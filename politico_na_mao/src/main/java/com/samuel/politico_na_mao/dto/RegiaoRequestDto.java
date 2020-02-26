@@ -2,17 +2,13 @@ package com.samuel.politico_na_mao.dto;
 
 import com.samuel.politico_na_mao.model.Regiao;
 
-import lombok.Getter;
-import lombok.Setter;
-import lombok.ToString;
+import lombok.Data;
 
 /**
- * RegiaoDto
+ * RegiaoRequestDto
  */
-@Getter
-@Setter
-@ToString
-public class RegiaoDto {
+@Data
+public class RegiaoRequestDto {
 
     private int id;
     private String sigla;
@@ -29,7 +25,7 @@ public class RegiaoDto {
         return regiaoEntity;
     }
 
-    public RegiaoDto convertToDto(Regiao entityRegiao){
+    public RegiaoRequestDto convertToDto(Regiao entityRegiao){
         
         this.setId(entityRegiao.getId());
         this.setSigla(entityRegiao.getSigla());

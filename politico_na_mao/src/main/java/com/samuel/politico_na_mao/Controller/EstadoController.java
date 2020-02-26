@@ -3,7 +3,8 @@ package com.samuel.politico_na_mao.controller;
 import java.util.ArrayList;
 import java.util.List;
 
-import com.samuel.politico_na_mao.dto.UfDto;
+import com.samuel.politico_na_mao.dto.EstadoRequestDto;
+import com.samuel.politico_na_mao.dto.EstadoResponseDto;
 import com.samuel.politico_na_mao.model.Estado;
 import com.samuel.politico_na_mao.service.EstadoService;
 
@@ -34,15 +35,15 @@ public class EstadoController {
     public ResponseEntity<?> getAll() {
 
         Iterable<Estado> list = estadoService.findAllService();
-        List<UfDto> UfDtos = new ArrayList<>();
+        List<EstadoResponseDto> estadoResponseDtos = new ArrayList<>();
         
         for (Estado estado :list) {
             
-           UfDto ufDto = new UfDto();
-           UfDtos.add(ufDto.convertToDto(estado));  
+           EstadoResponseDto estadoResponseDto = new EstadoResponseDto();
+           estadoResponseDtos.add(estadoResponseDto.convertToDto(estado));  
         }
         
-        return new ResponseEntity<>(UfDtos,HttpStatus.OK);
+        return new ResponseEntity<>(estadoResponseDtos,HttpStatus.OK);
     }
     
     @PutMapping
@@ -50,10 +51,10 @@ public class EstadoController {
 
         final String uri = "https://servicodados.ibge.gov.br/api/v1/localidades/estados";
         RestTemplate restTemplate = new RestTemplate();
-        UfDto[] response = restTemplate.postForObject(uri, null, UfDto[].class);
+        EstadoRequestDto[] response = restTemplate.postForObject(uri, null, EstadoRequestDto[].class);
 
-        for (UfDto ufDto : response) {
-            estadoService.saveService(ufDto.convertToEntity());
+        for (EstadoRequestDto EstadoRequestDto : response) {
+            estadoService.saveService(EstadoRequestDto.convertToEntity());
         }
         return new ResponseEntity<>(HttpStatus.OK);
     }
